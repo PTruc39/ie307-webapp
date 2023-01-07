@@ -1,4 +1,6 @@
 export const Host = 
     {
-      host: "http://192.168.1.9/MangaApi/"
+      //"http://192.168.1.9/MangaApi/"
+      //"http://mangaappapi.somee.com/"
+      host: "http://192.168.1.9/MangaApi/" 
     }

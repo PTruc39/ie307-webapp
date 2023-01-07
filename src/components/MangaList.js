@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'; 
 import "./MangaList.module.css"
@@ -5,9 +6,9 @@ import {Host} from "../Host"
 import { Link,useNavigate } from 'react-router-dom';
 
 
-
 const MangaList = () => {
   const navigate = useNavigate();
+  const [ID, setID] = useState();
   const [inputs, setInputs] = useState({
     MangaName: "",
     MangaImg: "",
@@ -36,11 +37,30 @@ const handleChange2 = (e) => {
   });
   
 };
-const handleSubmit = (e) => {
+const  handleSubmit = async(e) => {
   console.log(inputs);
+  const res = await axios
+  .post(Host.host+`api/manga/AddManga`,{
+    MangaName:String(inputs.MangaName),
+    MangaImage: String(inputs.MangaImg),
+    Description: String(inputs.Description)
+  })
+  .catch((err)=>console.log(err))
+  await sendRequest();
+  await setShow(!show);
 };
-const handleSubmit2 = (e) => {
+const handleSubmit2 = async(e) => {
   console.log(inputs2);
+  const res = await axios
+  .post(Host.host+`api/manga/EditManga`,{
+    MangaID:ID,
+    MangaName:String(inputs2.MangaName2),
+    MangaImage: String(inputs2.MangaImg2),
+    Description: String(inputs2.Description2)
+  })
+  .catch((err)=>console.log(err))
+  await sendRequest();
+  await setShow2(!show2);
 };
 const handleEdit = (props) => {
   setShow2(!show2)
@@ -49,6 +69,7 @@ const handleEdit = (props) => {
     MangaImg2: props.MangaImage,
     Description2: props.Description,
   })
+  setID(props.MangaID);
 };
 
     const [mangas, setMangas] = useState();
