@@ -20,6 +20,8 @@ const ImageList = () => {
         };
     });
 };
+const [ID, setID] = useState();
+
 const handleChange2 = (e) => {
   setInputs2((prev) => {
       return {
@@ -43,6 +45,7 @@ const handleSubmit2 = async(e) => {
   console.log(inputs2);
   const res = await axios
   .post(Host.host+`api/list/EditList`,{
+    ListID:ID,
     ListImage:String(inputs2.ImageUrl2),
     ChapterID:parseInt(id)
   })
@@ -55,6 +58,8 @@ const handleEdit = (props) => {
   setInputs2({
     ImageUrl2: props.ListImage,
   })
+  setID(props.ListID);
+  
 };
 const handleDelete = async(props) => {
   const res = await axios
