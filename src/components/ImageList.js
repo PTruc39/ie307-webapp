@@ -42,7 +42,7 @@ const handleSubmit = async(e) => {
 const handleSubmit2 = async(e) => {
   console.log(inputs2);
   const res = await axios
-  .post(Host.host+`api/list/AddList`,{
+  .post(Host.host+`api/list/EditList`,{
     ListImage:String(inputs2.ImageUrl2),
     ChapterID:parseInt(id)
   })
