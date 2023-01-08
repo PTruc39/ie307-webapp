@@ -148,7 +148,7 @@ const handleEdit = (props) => {
           return (
             <tr key={manga.id}>
               <td>{manga.MangaName}</td>
-              <td><img src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/323442247_892937911735028_3084218970750829276_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=2c4854&_nc_ohc=qFq3dF5Z5RQAX-ANHN-&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCsKE_8ucjjCaBsCXwj06OJCqeKJVBZqu99BvC3lKQiFQ&oe=63BA22BF" height="50px" /></td>
+              <td><img src={manga.MangaImage} height="50px" /></td>
               <td>{manga.Description}</td>
               <td>
                 <div>

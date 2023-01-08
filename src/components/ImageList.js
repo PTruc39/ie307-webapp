@@ -28,17 +28,38 @@ const handleChange2 = (e) => {
       };
   });
 };
-const handleSubmit = (e) => {
+const handleSubmit = async(e) => {
   console.log(inputs);
+  const res = await axios
+    .post(Host.host+`api/list/AddList`,{
+      ListImage:String(inputs.ImageUrl),
+      ChapterID:parseInt(id)
+    })
+    .catch((err)=>console.log(err))
+    await sendRequest();
+    await setShow(!show);
 };
-const handleSubmit2 = (e) => {
+const handleSubmit2 = async(e) => {
   console.log(inputs2);
+  const res = await axios
+  .post(Host.host+`api/list/AddList`,{
+    ListImage:String(inputs2.ImageUrl2),
+    ChapterID:parseInt(id)
+  })
+  .catch((err)=>console.log(err))
+  await sendRequest();
+  await setShow2(!show2);
 };
 const handleEdit = (props) => {
   setShow2(!show2)
   setInputs2({
     ImageUrl2: props.ListImage,
   })
+};
+const handleDelete = async(props) => {
+  const res = await axios
+  .post(Host.host+`api/list/DeleteList?listID=`+props.ListID)
+  .catch((err)=>console.log(err))
 };
     const [show, setShow] = useState(false)
     const [show2, setShow2] = useState(false)
@@ -97,7 +118,7 @@ const handleEdit = (props) => {
         <div className={style.carName}>{list.ListID}</div>
         <img className={style.carImg} src="https://i.pinimg.com/564x/dd/52/69/dd5269a0cedf7e2cf85289f14e9a61ba.jpg" alt={list.ListID} />
         <button className={style.carLink} onClick={() => handleEdit(list)} >Edit</button>
-        <button className={style.carLink} >Delete</button>
+        <button className={style.carLink} onClick={() => handleDelete(list)} >Delete</button>
     </div>)}
     </div>
     </>)

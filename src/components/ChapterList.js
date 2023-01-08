@@ -7,6 +7,8 @@ import { Link,useNavigate } from 'react-router-dom';
 
 
 const ChapterList = () => {
+  const [ID, setID] = useState();
+
   const [inputs, setInputs] = useState({
     ChapterName: "",
   });
@@ -43,14 +45,25 @@ const handleSubmit = async(e) => {
     await setShow(!show);
 
 };
-const handleSubmit2 = (e) => {
+const handleSubmit2 = async(e) => {
   console.log(parseInt(id));
+  const res = await axios
+  .post(Host.host+`api/chapter/EditChapter`,{
+    ChapterName:String(inputs2.ChapterName2),
+    ChapterID:ID,
+    MangaID:parseInt(id)
+  })
+  .catch((err)=>console.log(err))
+  await sendRequest();
+  await setShow2(!show2);
 };
 const handleEdit = (props) => {
   setShow2(!show2)
   setInputs2({
     ChapterName2: props.ChapterName,
   })
+  setID(props.ChapterID);
+
 };
 
     const [show, setShow] = useState(false)
